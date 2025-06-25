@@ -1,14 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ProductCatalog from '@/views/product-catalog.vue'
+
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
 
   routes: [
     {
       path: '/',
       name: 'productCatalog',
-      component: ProductCatalog,
+      component: () => import ('@/views/product-catalog.vue'),
     },
   ],
 })

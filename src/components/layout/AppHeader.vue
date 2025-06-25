@@ -1,5 +1,5 @@
 <script setup>
-import CartBtn from '@/components/layout/components/header/cart-btn.vue'
+import CartBtn from '@/components/UI/CartButton.vue'
 </script>
 
 <template>
