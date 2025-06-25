@@ -10,6 +10,7 @@ const router = createRouter({
       name: 'productCatalog',
       component: ProductCatalog,
     },
+    
   ],
 })
 
