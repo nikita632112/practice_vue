@@ -1,12 +1,19 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import Layout from '@/components/layout/layout.vue'
+import AppLayout from '@/components/layout/AppLayout.vue'
 </script>
 
 <template>
-  <Layout>
-    <RouterView />
-  </Layout>
+  <AppLayout>
+    <router-view v-slot="{ Component }">
+      <component :is="Component" style="padding: 20px"/>
+    </router-view>
+  </AppLayout>
 </template>
 
-<style scoped></style>
+<style scoped>
+body {
+  margin: 0;
+  background: white !important;
+}
+</style>
