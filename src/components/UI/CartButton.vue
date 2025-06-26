@@ -1,15 +1,20 @@
 <script setup>
-import { ref } from 'vue'
+import { useCartStore } from '@/stores/useCartStore.js'
 
-const count = ref(1)
+const cartStore = useCartStore()
+
 </script>
 
 <template>
-  <div class="cursor-pointer">
-    <a class="btn btn-primary">
-      Корзина <span class="badge badge-light">{{ count }}</span>
-    </a>
-  </div>
+  <router-link to="/cart" class="cart-button text-white">
+   <h5>Корзина ({{ cartStore.totalItems }})</h5>
+  </router-link>
 </template>
 
-<style scoped></style>
+<style scoped>
+.cart-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+</style>

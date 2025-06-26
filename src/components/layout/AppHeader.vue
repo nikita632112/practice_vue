@@ -1,12 +1,14 @@
 <script setup>
-import CartBtn from '@/components/UI/CartButton.vue'
+import CartButton from '@/components/UI/CartButton.vue'
 </script>
 
 <template>
   <header class="header">
     <div class="header-content">
-      <div class="site-header-logo">Tutu</div>
-      <cart-btn />
+      <div class="site-header-logo">
+        <router-link to="/" class="text-white">tutu</router-link>
+      </div>
+      <CartButton />
     </div>
   </header>
 </template>

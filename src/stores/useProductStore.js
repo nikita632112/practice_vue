@@ -8,8 +8,8 @@ export const useProductStore = defineStore('products', {
             { id: 2, country: 'Франция', city: 'Париж', price: 350000, image: 'https://placeimg.dev/255/255/arch' },
             { id: 3, country: 'Тайланд', city: 'Пхукет', price: 180000, image: 'https://placeimg.dev/255/255/nature' }
         ],
-        selectedCountry: '0',
-        searchQuery: '',
+        selectedCountry: JSON.parse(localStorage.getItem('productFilters'))?.selectedCountry || '0',
+        searchQuery: JSON.parse(localStorage.getItem('productFilters'))?.searchQuery || '',
     }),
     getters: {
         filteredProducts(state) {
@@ -41,9 +41,16 @@ export const useProductStore = defineStore('products', {
         },  
     },
     actions: {
+        saveFiltersToLocalStorage() {
+            const filters = {
+                selectedCountry: this.selectedCountry,
+                searchQuery: this.searchQuery
+            }
+            localStorage.setItem('productFilters', JSON.stringify(filters))
+        },
         setSelectedCountry(countryId) {
-            this.selectedCountry = countryId;  // Должно обновлять state
-            console.log('Selected country changed to:', countryId)
+            this.selectedCountry = countryId;
+            this.saveFiltersToLocalStorage()
         },
         setSearchQuery(query) {
             this.searchQuery = query;

@@ -6,9 +6,6 @@ import ProductList from '@/components/products/ProductList.vue'
 
 const productsStore = useProductStore()
 
-console.log('All products:', productsStore.products)
-console.log('Filtered products:', productsStore.filteredProducts)
-console.log('Selected country:', productsStore.selectedCountry)
 </script>
 
 <template>

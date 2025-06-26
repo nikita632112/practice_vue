@@ -1,7 +1,6 @@
 <script setup>
-import { useCartStore } from '@/stores/userCartStore.js'
+import { useCartStore } from '@/stores/useCartStore.js'
 import { computed } from 'vue'
-import { storeToRefs } from 'pinia'
 
 const props = defineProps ({
     product: {
@@ -11,18 +10,18 @@ const props = defineProps ({
 })
 
 const cartStore = useCartStore()
-const { items } = storeToRefs(cartStore)
+
 
 const isInCart = computed(() => 
-    cartStore.items.some(item => item.product.id === props.product.id)
+  cartStore.items.some(item => item.product.id === props.product.id)
 )
 
-const addToCart = () => {
-    if (isInCart.value) {
-        cartStore.removeFromCart(props.product.id)
-    } else {
-        cartStore.addProductToCart(props.product)
-    }
+const toggleCart = () => {
+  if (isInCart.value) {
+    cartStore.removeFromCart(props.product.id)
+  } else {
+    cartStore.addToCart(props.product) 
+  }
 }
 
 </script>
@@ -38,11 +37,9 @@ const addToCart = () => {
       <p class="card-product__price">{{ product.price.toLocaleString() }} руб</p>
       <p><button 
         type="button" 
-        :class="['btn', isInCart ? 'btn-danger' : 'btn-primary']"
-        @click = "addToCart"
-        >
-        Заказать
-      </button></p>
+        :class="['btn', isInCart.value ? 'btn-danger' : 'btn-primary']"
+        @click="toggleCart"
+      >{{ isInCart ? 'В корзине' : 'Заказать' }}</button></p>
     </div>
   </div>
 </template>
