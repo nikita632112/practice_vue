@@ -1,19 +1,19 @@
 <script setup>
-import Filter from '@/components/Filters/Filter.vue'
-import SearchBar from '@/components/Filters/SearchBar.vue'
-import ProductList from '@/components/Filters/ProductList.vue'
+import CountryFilter from '@/components/Filters/CountryFilter.vue'
+import SearchFilter from '@/components/Filters/SearchFilter.vue'
+import ProductList from '@/components/Products/ProductList.vue'
 </script>
 
 <template>
-<!-- Основной родительский шаблон -->
+  <!-- Основной родительский шаблон -->
   <div class="catalog">
     <div class="row">
       <div class="col-xl-3 col-lg-4 col-md-5">
-        <Filter />
+        <CountryFilter />
       </div>
       <div class="col-xl-9 col-lg-8 col-md-7 p-3">
-          <SearchBar />
-          <ProductList />
+        <SearchFilter />
+        <ProductList />
       </div>
     </div>
   </div>
