@@ -22,9 +22,9 @@ const { selectedCountry, countriesCount  } = storeToRefs(actionStore);
                         name="country"
                         :id="`country-${country.id}`"
                         :value="country.id"
-                        @change=" actionStore.updateCountryFilter(country.id)"
+                        
                     />
-                    <label class="form-check-label" for="country-0"> 
+                    <label class="form-check-label" :for="`country-${country.id}`"> 
                         {{ country.name }} ({{ countriesCount[country.id] || 0 }}) 
                     </label>
                 </div>

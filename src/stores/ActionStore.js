@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { COUNTRIES } from '@/config/countries';
+import { COUNTRIES } from '@/config/countries'
+import { useCounterStore } from '@/stores/counter'
 
 export const useActionStore = defineStore('action', () => {
+    const counterStore = useCounterStore()
     const tours = ref([
         { id: 1, country: 'Россия', city: 'Сочи', imageUrl: 'https://placeimg.dev/255/255/nature', price: 2500, inCart: false },
         { id: 2, country: 'Франция', city: 'Париж', imageUrl: 'https://placeimg.dev/255/255/nature', price: 35000, inCart: false },
@@ -11,6 +13,8 @@ export const useActionStore = defineStore('action', () => {
     ])
     const selectedCountry = ref('0')
     const search = ref('') 
+    const cartItems = computed(() => tours.value.filter(t => t.inCart))
+    const totalPrice = computed(() => cartItems.value.reduce((sum, item) => sum + item.price, 0))
 
     const countriesCount = computed(() => {
         const count = { '0': tours.value.length }
@@ -34,18 +38,27 @@ export const useActionStore = defineStore('action', () => {
     })
         
 
-    const updateCountryFilter = (id) => {
-        selectedCountry.value = id
-    }
     
     const updateSearch  = (query) => {
         search.value = query.trim()
     }
 
-    const toggleCartStatus  = (tourId) => {
+    const toggleCartStatus = (tourId) => {
         const tour = tours.value.find(t => t.id === tourId)
-        if (tour) tour.inCart = !tour.inCart
+        if (!tour) {
+            console.error('Тур не найден:', tourId)
+            return false
+        }
+        tour.inCart = !tour.inCart
+        return true
+    }
+
+
+    const removeFromCart = (tourId) => {
+        const tour = tours.value.find(t => t.id === tourId)
+        if (tour) tour.inCart = false
+        counterStore.decrement()
     }
     
-    return { tours, filteredTours, selectedCountry, search, countriesCount, updateCountryFilter, updateSearch, toggleCartStatus }
+    return { tours, filteredTours, selectedCountry, search, countriesCount, cartItems, totalPrice, toggleCartStatus, updateSearch, removeFromCart }
 })
