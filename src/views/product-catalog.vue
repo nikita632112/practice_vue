@@ -7,7 +7,7 @@ import Area from '@/components/Area/Area.vue'
   <div class="catalog">
     <div class="row">
       <Filter />
-      <Area />
+      <Area :town="town"/>
     </div>
   </div>
 </template>
