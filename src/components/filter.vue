@@ -1,5 +1,12 @@
 <script>
-
+export default {
+  methods: {
+    checkCountry(event) {
+      this.$emit('countrycheck', parseInt(event.target.value));
+      console.log(parseInt(event.target.value))
+    }
+  }
+}
 </script>
 
 <template>
@@ -9,6 +16,7 @@
           <div class="filter-sidebar-content">
             <div class="form-check">
               <input
+                @input="checkCountry"
                 class="form-check-input"
                 type="radio"
                 name="country"
@@ -20,6 +28,7 @@
             </div>
             <div class="form-check">
               <input
+                @input="checkCountry"
                 class="form-check-input"
                 type="radio"
                 name="country"
@@ -30,6 +39,7 @@
             </div>
             <div class="form-check">
               <input
+                @input="checkCountry"
                 class="form-check-input"
                 type="radio"
                 name="country"
@@ -40,6 +50,7 @@
             </div>
             <div class="form-check">
               <input
+                @input="checkCountry"
                 class="form-check-input"
                 type="radio"
                 name="country"
@@ -70,18 +81,5 @@
   flex-direction: column;
   gap: 10px;
   padding: 5px;
-}
-
-.products-area {
-  display: flex;
-  gap: 10px;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding-top: 10px;
-}
-
-.card-product {
-  min-width: 200px;
 }
 </style>

@@ -1,13 +1,29 @@
-<script setup>
+<script>
 import Filter from '@/components/Filter.vue'
 import Area from '@/components/Area/Area.vue'
+
+export default {
+  components: {
+    Filter, Area
+  },
+  data() {
+    return {
+      countryNum: 0
+    }
+  },
+  methods: {
+    countrycheck(q) {
+      this.countryNum = q
+    }
+  }
+}
 </script>
 
 <template>
   <div class="catalog">
     <div class="row">
       <Filter />
-      <Area :town="town"/>
+      <Area :countryNum="countryNum"/>
     </div>
   </div>
 </template>
