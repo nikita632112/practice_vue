@@ -3,6 +3,17 @@ import FilterList from "@/components/layout/filter.vue";
 import Search from "@/components/layout/search.vue";
 import ProductList from "@/components/layout/product-list.vue";
 
+import {useProductStore} from '@/stores/counter.js'
+import { createPinia } from 'pinia'
+import { createApp } from 'vue'
+import App from '@/App.vue'
+
+const pinia = createPinia()
+const app = createApp(App)
+app.use(pinia)
+
+const storage = useProductStore()
+
 export default {
   components: {
     FilterList,
@@ -17,28 +28,26 @@ export default {
     products: {
       type: Array,
       required: true
+    },
+    productsCount: {
+      type: Array
     }
   },
   data() {
     return {
       changedFilter: "Все",
-      searchValue: ""
+      searchValue: "",
+      arr: this.products.filter(item => item.inCart)
     }
   },
   computed: {
     filtration(){
-      if(this.changedFilter == "Все") return this.products
-      return [...this.products].filter(item => item.contry === this.changedFilter);
+      let arr = this.products.filter(item => item.inCart)
+      if(this.changedFilter == "Все") return arr
+      return [...arr].filter(item => item.contry === this.changedFilter);
     },
     searching(){
       return this.filtration.filter(item => item.name.toLocaleLowerCase().includes(this.searchValue.toLocaleLowerCase()))
-    },
-    productsCount(){
-      this.filters.forEach(item => {
-        if(item.name === "Все") item.amount = this.products.length;
-        else item.amount = this.products.filter(x => x.contry === item.name).length
-      });
-      return this.filters;
     }
   }
 }

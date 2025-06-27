@@ -1,17 +1,25 @@
 <script setup>
 import CartBtn from '@/components/layout/components/header/cart-btn.vue'
+
+const props = defineProps({
+  cart: Number
+})
 </script>
 
 <template>
   <header class="header">
     <div class="header-content">
-      <div class="site-header-logo">Tutu</div>
-      <cart-btn />
+      <a href="/"><div class="site-header-logo">Tutu</div></a>
+      <cart-btn :cart="props.cart" />
     </div>
   </header>
 </template>
 
 <style scoped>
+a{
+  color: white;
+  text-decoration: none;
+}
 .header {
   z-index: 9999;
   transition:

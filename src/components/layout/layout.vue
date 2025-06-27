@@ -1,9 +1,13 @@
 <script setup>
 import LayoutHeader from '@/components/layout/components/header/layout-header.vue'
+
+const props = defineProps({
+  cart: Number
+})
 </script>
 
 <template>
-  <LayoutHeader />
+  <LayoutHeader :cart="props.cart" />
   <div class="content">
     <slot></slot>
   </div>
