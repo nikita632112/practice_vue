@@ -1,14 +1,14 @@
 <script setup>
-import { ref } from 'vue'
-
-const count = ref(1)
+import {useCounterStore} from '@/stores/counter';
+import { storeToRefs } from 'pinia';
+const { count } = storeToRefs(useCounterStore());
 </script>
 
 <template>
   <div class="cursor-pointer">
-    <a class="btn btn-primary">
-      Корзина <span class="badge badge-light">{{ count }}</span>
-    </a>
+    <router-link to="/cart" class="btn btn-primary">
+    Корзина <span v-if="count >= 0" class="badge badge-light">{{ count }}</span>
+    </router-link>
   </div>
 </template>
 
