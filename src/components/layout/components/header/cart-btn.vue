@@ -6,7 +6,7 @@ const count = ref(1)
 
 <template>
   <div class="cursor-pointer">
-    <a class="btn btn-primary">
+    <a href="/cart" class="btn btn-primary">
       Корзина <span class="badge badge-light">{{ count }}</span>
     </a>
   </div>

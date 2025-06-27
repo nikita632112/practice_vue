@@ -1,17 +1,24 @@
 <script setup>
 import CartBtn from '@/components/layout/components/header/cart-btn.vue'
+import { useRoute } from "vue-router";
+
+const route = useRoute();
 </script>
 
 <template>
   <header class="header">
     <div class="header-content">
-      <div class="site-header-logo">Tutu</div>
+      <a href="/"><div class="site-header-logo">Tutu</div></a>
       <cart-btn />
     </div>
   </header>
 </template>
 
 <style scoped>
+a{
+  color: white;
+  text-decoration: none;
+}
 .header {
   z-index: 9999;
   transition:
