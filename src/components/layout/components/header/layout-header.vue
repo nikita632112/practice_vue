@@ -5,7 +5,7 @@ import CartBtn from '@/components/layout/components/header/cart-btn.vue'
 <template>
   <header class="header">
     <div class="header-content">
-      <div class="site-header-logo">Tutu</div>
+      <div class="site-header-logo" @click="$router.push('/')">Tutu</div>
       <cart-btn />
     </div>
   </header>
