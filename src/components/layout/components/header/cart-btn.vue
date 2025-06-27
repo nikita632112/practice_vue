@@ -1,13 +1,13 @@
 <script setup>
-import { ref } from 'vue'
-
-const count = ref(1)
+const props = defineProps({
+  cart: Number
+})
 </script>
 
 <template>
   <div class="cursor-pointer">
     <a href="/cart" class="btn btn-primary">
-      Корзина <span class="badge badge-light">{{ count }}</span>
+      Корзина <span class="badge badge-light">{{ props.cart }}</span>
     </a>
   </div>
 </template>

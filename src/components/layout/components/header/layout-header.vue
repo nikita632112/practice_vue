@@ -1,15 +1,16 @@
 <script setup>
 import CartBtn from '@/components/layout/components/header/cart-btn.vue'
-import { useRoute } from "vue-router";
 
-const route = useRoute();
+const props = defineProps({
+  cart: Number
+})
 </script>
 
 <template>
   <header class="header">
     <div class="header-content">
       <a href="/"><div class="site-header-logo">Tutu</div></a>
-      <cart-btn />
+      <cart-btn :cart="props.cart" />
     </div>
   </header>
 </template>

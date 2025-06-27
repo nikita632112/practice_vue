@@ -17,7 +17,7 @@ function productsCount(){
 </script>
 
 <template>
-  <Layout>
+  <Layout :cart="store.cart.length">
     <RouterView :filters="store.filters" :products="store.cartCheck" :productsCount="productsCount()" @add-to-cart="store.addToCart"/>
   </Layout>
 </template>

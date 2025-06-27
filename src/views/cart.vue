@@ -30,7 +30,7 @@ export default {
       required: true
     },
     productsCount: {
-      type: Function
+      type: Array
     }
   },
   data() {
