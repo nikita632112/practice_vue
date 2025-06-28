@@ -1,22 +1,20 @@
 <script>
-import { ref } from 'vue'
-import inp from './input.vue'
+import CardItem from './CardItem.vue'
 
 export default {
+  components: {
+    CardItem
+  },
   props: {
     town: {
       type: String
     },
     countryNum: {
-      type: Number
+      type: String
     }
   },
   data() {
     return {
-      activeClass: ref('btn'),
-      errorClass: ref('btn-primary'),
-      isActive: true,
-      text: "Заказать",
       tours: [
         {Country:'Россия', town: 'Сочи', price: '200 000 руб'},
         {Country:'Россия', town: 'Сочи', price: '200 000 руб'},
@@ -33,27 +31,15 @@ export default {
       ],
     }
   },
-  methods: {
-    toggleclass() {
-      this.isActive = !this.isActive;
-      if (this.isActive == false){
-        this.text = "Отмена"
-      }
-      else{
-        this.text = "Заказать"
+  computed: {
+    filterCountry() {
+      switch(this.countryNum){
+        case "1": return this.tours.filter(function (elem) {if (elem.Country == 'Россия') return elem});
+        case "2": return this.tours.filter(function (elem) {if (elem.Country == 'Франция') return elem});
+        case "3": return this.tours.filter(function (elem) {if (elem.Country == 'Тайланд') return elem});
+        default: return this.tours;
       }
     },
-  },
-  computed: {
-//    countryList() {
-//      let c = this.countryNum;
-//      return this.tours.filter(function (elem) {
-//        if (c===0) return true;
-//        else if (c===1) return elem.countryNum.indexOf(c) == "Россия";
-//        else if (c===2) return elem.countryNum.indexOf(c) == "Франция";
-//        else return elem.countryNum.indexOf(c) == "Тайланд";
-//      })
-//    },
     filteredList() {
       let t = this.town;
       return this.tours.filter(function (elem) {
@@ -66,17 +52,10 @@ export default {
 </script>
 
 <template>
-<div class="card text-center card-product" v-for="tour in filteredList">
-  <div class="card-product__img">
-    <img class="card-img" src="https://placeimg.dev/255/255/nature" />
-  </div>
-  <div class="card-body">
-    <p>{{ tour.Country }}</p>
-    <h4 class="card-product__title">{{ tour.town }}</h4>
-    <p class="card-product__price">{{ tour.price }}</p>
-    <p><button type="button" @click="toggleclass" :class="[isActive ? errorClass : 'btn-danger', activeClass]"> {{ text }} </button></p>
-  </div>
-</div>
+  <CardItem 
+    v-for="tour in filterCountry"
+    :tour="tour"
+  />
 </template>
 
 <style>

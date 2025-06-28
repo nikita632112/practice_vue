@@ -2,8 +2,7 @@
 export default {
   methods: {
     checkCountry(event) {
-      this.$emit('countrycheck', parseInt(event.target.value));
-      console.log(parseInt(event.target.value))
+      this.$emit('countrycheck', event.target.value);
     }
   }
 }

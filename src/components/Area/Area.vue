@@ -18,7 +18,7 @@ export default {
   },
   props: {
     countryNum: {
-      type: Number
+      type: String
     }
   }
 }

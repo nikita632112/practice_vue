@@ -8,12 +8,12 @@ export default {
   },
   data() {
     return {
-      countryNum: 0
+      countryNum: "0"
     }
   },
   methods: {
-    countrycheck(q) {
-      this.countryNum = q
+    countrycheck(data) {
+      this.countryNum = data
     }
   }
 }
@@ -22,7 +22,7 @@ export default {
 <template>
   <div class="catalog">
     <div class="row">
-      <Filter />
+      <Filter @countrycheck="countrycheck"/>
       <Area :countryNum="countryNum"/>
     </div>
   </div>
