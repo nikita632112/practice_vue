@@ -14,17 +14,19 @@ export default {
     tour: {
       type: Object,
       required: true
+    },
+    basketlist: {
+      type: Object
     }
   },
   methods: {
     toggleclass() {
       this.isActive = !this.isActive;
-      if (this.isActive == false){
-        this.text = "Отмена"
+      if (this.isActive == false) {
+        this.$emit('basketElem', this.tour);
+        return this.text = "Отмена"
       }
-      else{
-        this.text = "Заказать"
-      }
+        return this.text = "Заказать"
     },
   },
 }

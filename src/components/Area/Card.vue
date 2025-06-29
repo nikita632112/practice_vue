@@ -6,11 +6,14 @@ export default {
     CardItem
   },
   props: {
-    town: {
+    townName: {
       type: String
     },
     countryNum: {
       type: String
+    },
+    basketlist:{
+      type: Array
     }
   },
   data() {
@@ -33,19 +36,24 @@ export default {
   },
   computed: {
     filterCountry() {
-      switch(this.countryNum){
-        case "1": return this.tours.filter(function (elem) {if (elem.Country == 'Россия') return elem});
-        case "2": return this.tours.filter(function (elem) {if (elem.Country == 'Франция') return elem});
-        case "3": return this.tours.filter(function (elem) {if (elem.Country == 'Тайланд') return elem});
-        default: return this.tours;
+      let filtered = []
+      let q = []
+      switch(this.countryNum) {
+        case "1": q = this.tours.filter(function (elem) {if (elem.Country == 'Россия') return filtered = elem}); break;
+        case "2": q = this.tours.filter(function (elem) {if (elem.Country == 'Франция') return filtered = elem}); break;
+        case "3": q = this.tours.filter(function (elem) {if (elem.Country == 'Тайланд') return filtered = elem}); break;
+        default: q = this.tours; break;
       }
-    },
-    filteredList() {
-      let t = this.town;
-      return this.tours.filter(function (elem) {
+      let t = this.townName;
+      return q.filter(function (elem) {
         if(t==='') return true;
-        else return elem.town.indexOf(t) !== -1;
+        return elem.town.indexOf(t) !== -1;
       })
+    }
+  },
+  methods: {
+    basketElem(elem) {
+
     }
   }
 }
@@ -55,6 +63,7 @@ export default {
   <CardItem 
     v-for="tour in filterCountry"
     :tour="tour"
+    @basketElem="basketElem"
   />
 </template>
 

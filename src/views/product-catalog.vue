@@ -15,6 +15,11 @@ export default {
     countrycheck(data) {
       this.countryNum = data
     }
+  },
+  props: {
+    basketlist:{
+      type: Array
+    }
   }
 }
 </script>
@@ -23,7 +28,7 @@ export default {
   <div class="catalog">
     <div class="row">
       <Filter @countrycheck="countrycheck"/>
-      <Area :countryNum="countryNum"/>
+      <Area :countryNum="countryNum" :basketlist="basketlist"/>
     </div>
   </div>
 </template>

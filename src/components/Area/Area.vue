@@ -19,6 +19,9 @@ export default {
   props: {
     countryNum: {
       type: String
+    },
+    basketlist:{
+      type: Array
     }
   }
 }
@@ -26,12 +29,12 @@ export default {
 </script>
 
 <template>
-    <div class="col-xl-9 col-lg-8 col-md-7 p-3">
-      <inp @event="townFilter" />
-        <div class="products-area">
-          <Card :town="townName" :countryNum="countryNum"/>
-        </div>
-      </div>
+  <div class="col-xl-9 col-lg-8 col-md-7 p-3">
+    <inp @event="townFilter" />
+    <div class="products-area">
+      <Card :townName="townName" :countryNum="countryNum" :basketlist="basketlist"/>
+    </div>
+  </div>
 </template>
 
 <style>

@@ -1,12 +1,26 @@
-<script setup>
+<script>
 import CartBtn from '@/components/layout/components/header/cart-btn.vue'
+
+export default {
+  components: {
+    CartBtn
+  },
+  methods: {
+    goToBasket() {
+      this.$router.push('/Basket')
+    },
+    goToCatalog() {
+      this.$router.push('/')
+    }
+  }
+}
 </script>
 
 <template>
   <header class="header">
     <div class="header-content">
-      <div class="site-header-logo">Tutu</div>
-      <cart-btn />
+      <div @click="goToCatalog" class="site-header-logo">Tutu</div>
+      <cart-btn @click="goToBasket" />
     </div>
   </header>
 </template>

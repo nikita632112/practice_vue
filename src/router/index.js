@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ProductCatalog from '@/views/product-catalog.vue'
+import productbasket from '@/views/basketproduct.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,7 +11,11 @@ const router = createRouter({
       name: 'productCatalog',
       component: ProductCatalog,
     },
-    
+    {
+      path: '/basket',
+      name: 'productbasket',
+      component: productbasket,
+    },
   ],
 })
 
